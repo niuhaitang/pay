@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="0.8,1.0">
+	<application setting="false">
+		<name><![CDATA[精美百度小程序官网]]></name>
+		<identifie><![CDATA[yyf_baidu]]></identifie>
+		<version><![CDATA[1.0.6]]></version>
+		<type><![CDATA[business]]></type>
+		<ability><![CDATA[适合大多数企业官网的小程序]]></ability>
+		<description><![CDATA[在百度搜索APP里展示企业的公司介绍、案例、新闻活动、联系方式等。]]></description>
+		<author><![CDATA[微擎]]></author>
+		<url><![CDATA[https://www.we7.cc]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+		</handles>
+		<rule embed="false" />
+		<card embed="false" />
+		<supports>
+    		<item type="wxapp" />
+        </supports>
+	</platform>
+	<bindings>
+		<menu>
+			<entry title="快速创建" do="Mould" state="a=1" direct="false" />
+			<entry title="站点设置" do="sysinfo" state="a=1" direct="false" />
+			<entry title="全局样式" do="indexstyle" state="a=1" direct="false" />
+			<entry title="自定义底部" do="tabbar" state="a=1" direct="false" />
+			<entry title="分类管理" do="category" state="a=1" direct="false" />
+			<entry title="表单数据" do="form" state="a=1" direct="false" />
+			<entry title="内容管理" do="news" state="a=1" direct="false" />
+			<entry title="幻灯片管理" do="slide" state="a=1" direct="false" />
+			<entry title="表单设置" do="formconfig" state="a=1" direct="false" />
+			<entry title="智能广告位" do="ad" state="a=1" direct="false" />
+			<entry title="版权设置" do="Copyright" state="a=1" direct="false" />
+			<entry title="联系我们" do="Contact" state="a=1" direct="false" />
+		</menu>
+	</bindings>
+	<permissions>
+	</permissions>
+	<install><![CDATA[CREATE TABLE IF NOT EXISTS `ims_yyf_baidu_ad` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `uniacid` int(10) unsigned NOT NULL,
+  `kind` int(1) unsigned NOT NULL,
+  `kind2` int(1) unsigned NOT NULL,
+  `position` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `appid` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `topmargin` varchar(255) NOT NULL,
+  `bottommargin` varchar(255) NOT NULL,
+  `sortrank` int(10) unsigned NOT NULL,
+  `style` int(1) unsigned NOT NULL,
+  `imgurl1` varchar(255) NOT NULL,
+  `imgurl2` varchar(255) NOT NULL,
+  `appid2` varchar(255) NOT NULL,
+  `address2` varchar(255) NOT NULL,
+  `url2` varchar(255) NOT NULL,
+  `phone2` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `adid` varchar(255) NOT NULL,
+  `adinfo` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_yyf_baidu_adsense` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `ad_img` varchar(200) NOT NULL,
+  `ad_url` varchar(255) NOT NULL,
+  `ad_height` varchar(50) NOT NULL,
+  `ad1_img` varchar(200) NOT NULL,
+  `ad1_url` varchar(50) NOT NULL,
+  `ad2_img` varchar(200) NOT NULL,
+  `ad2_url` varchar(50) NOT NULL,
+  `ad1_height` varchar(60) NOT NULL,
+  `a1url` varchar(255) NOT NULL,
+  `a2url` varchar(255) NOT NULL,
+  `a3url` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_yyf_baidu_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fid` int(11) NOT NULL,
+  `uniacid` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `sortrank` int(11) NOT NULL,
+  `type` int(2) NOT NULL,
+  `thumb` varchar(255) NOT NULL,
+  `isshow` int(2) NOT NULL,
+  `desc` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `isshow_nav` int(11) NOT NULL,
+  `show_num` int(11) NOT NULL DEFAULT '4',
+  `hide_navbar` int(2) NOT NULL,
+  `thumb_height` int(5) NOT NULL DEFAULT '105',
+  `cateurl` varchar(255) NOT NULL,
+  `thumb_width` int(5) NOT NULL,
+  `list_thumb` varchar(255) NOT NULL,
+  `close_comment` int(1) NOT NULL,
+  `cid` int(11) NOT NULL,
+  `hide_read` int(1) NOT NULL,
+  `read_uplimit` int(11) NOT NULL,
+  `read_downlimit` int(11) NOT NULL,
+  `hide_vote` int(1) NOT NULL,
+  `vote_uplimit` int(11) NOT NULL,
+  `vote_downlimit` int(11) NOT NULL,
+  `show_diynav` int(1) NOT NULL,
+  `nav_thumb` varchar(255) NOT NULL,
+  `nav_height` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_yyf_baidu_comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `aid` int(11) NOT NULL,
+  `addtime` int(10) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `score` varchar(11) NOT NULL,
+  `upvote` int(11) NOT NULL,
+  `check` int(1) NOT NULL,
+  `hide` int(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_yyf_baidu_form` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `t1name` varchar(100) NOT NULL,
+  `t1full` int(2) NOT NULL,
+  `t1show` int(2) NOT NULL,
+  `t2name` varchar(100) NOT NULL,
+  `t2full` int(2) NOT NULL,
+  `t2show` int(2) NOT NULL,
+  `t3name` varchar(100) NOT NULL,
+  `t3full` int(2) NOT NULL,
+  `t3show` int(2) NOT NULL,
+  `t4name` varchar(100) NOT NULL,
+  `t4full` int(2) NOT NULL,
+  `t4show` int(2) NOT NULL,
+  `rname` varchar(100) NOT NULL,
+  `rvalue` varchar(200) NOT NULL,
+  `rfull` int(2) NOT NULL,
+  `rshow` int(2) NOT NULL,
+  `cname` varchar(100) NOT NULL,
+  `cvalue` varchar(200) NOT NULL,
+  `cfull` int(2) NOT NULL,
+  `cshow` int(2) NOT NULL,
+  `aname` varchar(100) NOT NULL,
+  `afull` int(2) NOT NULL,
+  `ashow` int(2) NOT NULL,
+  `desc` varchar(255) NOT NULL,
+  `catname` varchar(100) NOT NULL,
+  `interval` varchar(100) NOT NULL,
+  `successtext` varchar(150) NOT NULL,
+  `thumb` varchar(255) NOT NULL,
+  `templet` int(2) NOT NULL,
+  `isshow` int(1) NOT NULL,
+  `t1phone` int(1) NOT NULL,
+  `t2phone` int(1) NOT NULL,
+  `t3phone` int(1) NOT NULL,
+  `t4phone` int(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_yyf_baidu_formvalue` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `t1name` varchar(100) NOT NULL,
+  `t1value` varchar(200) NOT NULL,
+  `t2name` varchar(100) NOT NULL,
+  `t2value` varchar(200) NOT NULL,
+  `t3name` varchar(100) NOT NULL,
+  `t3value` varchar(200) NOT NULL,
+  `t4name` varchar(100) NOT NULL,
+  `t4value` varchar(200) NOT NULL,
+  `rname` varchar(100) NOT NULL,
+  `rvalue` varchar(200) NOT NULL,
+  `cname` varchar(100) NOT NULL,
+  `cvalue` varchar(200) NOT NULL,
+  `aname` varchar(100) NOT NULL,
+  `avalue` varchar(255) NOT NULL,
+  `read` int(1) NOT NULL,
+  `addtime` int(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_yyf_baidu_news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `cid` int(1) NOT NULL,
+  `thumb` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `addtime` int(10) NOT NULL,
+  `content` text NOT NULL,
+  `videosrc` varchar(255) NOT NULL,
+  `sortrank` int(11) NOT NULL,
+  `appid` varchar(255) NOT NULL,
+  `pageaddress` varchar(255) NOT NULL,
+  `read_num` int(11) NOT NULL,
+  `vote_num` int(11) NOT NULL,
+  `audio_src` varchar(255) NOT NULL,
+  `audio_author` varchar(255) NOT NULL,
+  `audio_img` varchar(255) NOT NULL,
+  `audio_name` varchar(255) NOT NULL,
+  `diyshare` int(1) NOT NULL,
+  `sharetitle` varchar(150) NOT NULL,
+  `shareimg` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_yyf_baidu_slide` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `images` varchar(255) NOT NULL,
+  `aid` int(11) NOT NULL,
+  `sortrank` int(11) NOT NULL,
+  `kind` int(1) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `appid` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_yyf_baidu_style` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `tcolor` varchar(100) NOT NULL,
+  `slide_close` int(11) NOT NULL,
+  `nav_close` int(11) NOT NULL,
+  `notice_close` int(11) NOT NULL,
+  `custom_close` int(11) NOT NULL,
+  `contact_background` varchar(255) NOT NULL,
+  `contact_name` varchar(100) NOT NULL,
+  `contact_logo` varchar(255) NOT NULL,
+  `horn` varchar(255) NOT NULL,
+  `slide_height` varchar(50) NOT NULL,
+  `nav_style` int(11) NOT NULL,
+  `title_style` int(11) NOT NULL,
+  `hide_time` int(2) NOT NULL,
+  `hide_title` int(2) NOT NULL,
+  `hide_tabbar` int(1) NOT NULL,
+  `nav_height` varchar(255) NOT NULL,
+  `hide_search` int(1) NOT NULL,
+  `head_color` varchar(255) NOT NULL,
+  `font_color` varchar(255) NOT NULL,
+  `nav_bg` varchar(255) NOT NULL DEFAULT '#ffffff',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_yyf_baidu_sysinfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `title` varchar(150) NOT NULL,
+  `notice` varchar(255) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `jing` varchar(20) NOT NULL,
+  `wei` varchar(20) NOT NULL,
+  `qq` varchar(50) NOT NULL,
+  `address` varchar(200) NOT NULL,
+  `email` varchar(80) NOT NULL,
+  `copyright` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `message_title` varchar(255) NOT NULL,
+  `message_email` varchar(255) NOT NULL,
+  `smtp_email` varchar(255) NOT NULL,
+  `smtp_key` varchar(255) NOT NULL,
+  `phone2` varchar(15) NOT NULL,
+  `wechat` varchar(255) NOT NULL,
+  `website` varchar(255) NOT NULL,
+  `copy_appid` varchar(255) NOT NULL,
+  `copy_address` varchar(255) NOT NULL,
+  `copy_img` varchar(255) NOT NULL,
+  `copy_phone` varchar(255) NOT NULL,
+  `copy_kind` int(11) NOT NULL,
+  `c_templet` int(2) NOT NULL,
+  `comment_time` int(11) NOT NULL,
+  `check_comment` int(1) NOT NULL,
+  `comment_interval` int(11) NOT NULL,
+  `sysshare` varchar(255) NOT NULL,
+  `show_share` int(1) NOT NULL,
+  `contact_username` varchar(255) NOT NULL,
+  `seo_title` varchar(255) NOT NULL,
+  `seo_keywords` varchar(255) NOT NULL,
+  `seo_desc` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_yyf_baidu_tabbar` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `m1_name` varchar(255) NOT NULL,
+  `m2_name` varchar(255) NOT NULL,
+  `m3_name` varchar(255) NOT NULL,
+  `m4_name` varchar(255) NOT NULL,
+  `m1_path` varchar(255) NOT NULL,
+  `m2_path` varchar(255) NOT NULL,
+  `m3_path` varchar(255) NOT NULL,
+  `m4_path` varchar(255) NOT NULL,
+  `m1_img` varchar(255) NOT NULL,
+  `m2_img` varchar(255) NOT NULL,
+  `m3_img` varchar(255) NOT NULL,
+  `m4_img` varchar(255) NOT NULL,
+  `m1_selimg` varchar(255) NOT NULL,
+  `m2_selimg` varchar(255) NOT NULL,
+  `m3_selimg` varchar(255) NOT NULL,
+  `m4_selimg` varchar(255) NOT NULL,
+  `border_color` varchar(255) NOT NULL,
+  `background_color` varchar(255) NOT NULL,
+  `color` varchar(255) NOT NULL,
+  `sel_color` varchar(255) NOT NULL,
+  `uptime` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+]]></install>
+	<uninstall><![CDATA[DROP TABLE IF EXISTS `ims_yyf_baidu_ad`;
+DROP TABLE IF EXISTS `ims_yyf_baidu_adsense`;
+DROP TABLE IF EXISTS `ims_yyf_baidu_category`;
+DROP TABLE IF EXISTS `ims_yyf_baidu_comment`;
+DROP TABLE IF EXISTS `ims_yyf_baidu_form`;
+DROP TABLE IF EXISTS `ims_yyf_baidu_formvalue`;
+DROP TABLE IF EXISTS `ims_yyf_baidu_news`;
+DROP TABLE IF EXISTS `ims_yyf_baidu_slide`;
+DROP TABLE IF EXISTS `ims_yyf_baidu_style`;
+DROP TABLE IF EXISTS `ims_yyf_baidu_sysinfo`;
+DROP TABLE IF EXISTS `ims_yyf_baidu_tabbar`;
+]]></uninstall>
+	<upgrade><![CDATA[upgrade.php]]></upgrade>
+</manifest>
